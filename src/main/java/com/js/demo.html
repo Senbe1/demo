@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo01</title>
+</head>
+<body>
+<h1>标题</h1>
+<button onclick="getElementById('demo').innerHTML=Date()">现在的时间是?</button>
+<p id="demo"></p>
+<button  onclick="document.getElementById('a').innerHTML=sum1()">a=1,求a+"2"的值</button>
+<P id="a"></P>
+<button  onclick="document.getElementById('b').innerHTML=c">a=1,b=2,求a+b的值</button>
+<P id="b"></P>
+<button  onclick="document.getElementById('c').innerHTML=sum2()">求1-10的和</button>
+<P id="c"></P>
+<script>
+    var a = 1, b = 2;
+    var c = a + b;
+    var str = new String();
+    str="23333";
+    /*数组声明*/
+    var list = new Array();
+    list[0]=1;
+    list[1]=2;
+    list[2]=3;
+    list[3]=4;
+    list[4]=5;
+    list[5]=6;
+    list[6]=7;
+    list[7]=8;
+    list[8]=9;
+    list[9]=10;
+    function sum1() {
+        var d = a+"2";
+        console.log(d);
+        return  d;
+    }
+
+    function sum2(){
+        var sum2= new Number();
+        var sum3=0;
+        for (x in list){
+            sum2+=x;
+            sum3+=list[x];
+        }
+        console.log(sum2);
+        return sum3;
+    }
+
+
+</script>
+
+</body>
+</html>
