@@ -79,7 +79,12 @@
             <artifactId>HikariCP</artifactId>
             <version>3.3.1</version>
         </dependency>
-
+        <!--jetcache依赖-->
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-starter-redis</artifactId>
+            <version>2.4.4</version>
+        </dependency>
 
         <!--整合Google的Gson依赖-->
         <dependency>
