@@ -2,25 +2,26 @@ package com.example.demo.springbootdemo.service.impl;
 
 import com.example.demo.springbootdemo.dao.UserMapper;
 import com.example.demo.springbootdemo.domain.entity.UserEntity;
-import com.example.demo.springbootdemo.service.TestService;
-import com.sun.istack.internal.logging.Logger;
+import com.example.demo.springbootdemo.service.ITestService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@Slf4j
+public class TestServiceImpl implements ITestService {
 
-public class TestServiceImpl implements TestService {
 
-    public static Logger logger = Logger.getLogger(TestServiceImpl.class);
-    @Autowired
+    @Resource
     UserMapper userMapper;
 
     @Override
     public void addUser(UserEntity user) {
         try {
             userMapper.insert(user);
-        }catch (Exception e){
-            logger.warning("数据库插入数据异常");
+        } catch (Exception e) {
+            log.warn("数据库插入数据异常");
         }
     }
 
@@ -29,8 +30,8 @@ public class TestServiceImpl implements TestService {
         try {
             int i = userMapper.deleteById(user);
             return i;
-        }catch (Exception e){
-            logger.warning("数据库删除异常");
+        } catch (Exception e) {
+            log.warn("数据库删除异常");
         }
         return 0;
     }
@@ -40,9 +41,12 @@ public class TestServiceImpl implements TestService {
         try {
             UserEntity user = userMapper.unique(id);
             UserEntity user1 = userMapper.single(id);
+            List<UserEntity> userList = userMapper.createLambdaQuery().andLike(UserEntity::getId, "%1%").andLessEq(UserEntity::getAge, 20).select();
+            //
+            UserEntity user2 = userMapper.createLambdaQuery().andEq(UserEntity::getId, id).unique();
             return user;
         } catch (Exception e) {
-            logger.warning("数据库无法查找到数据");
+            log.warn("数据库无法查找到数据");
         }
         return null;
     }
@@ -53,7 +57,7 @@ public class TestServiceImpl implements TestService {
             List<UserEntity> list = userMapper.selectByIds(ids);
             return list;
         } catch (Exception e) {
-            logger.warning("数据库无法查找到该数据");
+            log.warn("数据库无法查找到该数据");
         }
         return null;
     }
@@ -69,18 +73,18 @@ public class TestServiceImpl implements TestService {
 
             return i;
         } catch (Exception e) {
-            logger.warning("数据库更新异常");
+            log.warn("数据库更新异常");
         }
         return 0;
     }
 
     @Override
     public UserEntity selectByName(String lastName, String firstName) {
-        try{
+        try {
             UserEntity user = userMapper.selectByName(lastName, firstName);
             return user;
-        }catch (Exception e){
-            logger.warning("数据库查询异常");
+        } catch (Exception e) {
+            log.warn("数据库查询异常");
         }
         return null;
     }
@@ -90,8 +94,8 @@ public class TestServiceImpl implements TestService {
         try {
             int i = userMapper.updateAge(age, id);
             return i;
-        }catch (Exception e){
-            logger.warning("数据库更新异常");
+        } catch (Exception e) {
+            log.warn("数据库更新异常");
         }
         return 0;
     }

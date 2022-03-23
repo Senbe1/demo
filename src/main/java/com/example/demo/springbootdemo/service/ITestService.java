@@ -6,7 +6,7 @@ import org.beetl.sql.mapper.annotation.Sql;
 
 import java.util.List;
 
-public interface TestService {
+public interface ITestService {
 
     //新增
     void addUser(UserEntity user);

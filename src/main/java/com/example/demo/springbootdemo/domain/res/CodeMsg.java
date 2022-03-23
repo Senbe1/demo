@@ -34,7 +34,7 @@ public class CodeMsg<T> {
     public static <T> CodeMsg success(T data){
         return build(true,ResultCodeEnum.SUCCESS,data);
     }
-
+    public static CodeMsg success(){return build(true,ResultCodeEnum.SUCCESS,null);}
     /**
      * 失败
      * @param data
@@ -44,7 +44,7 @@ public class CodeMsg<T> {
     public static <T> CodeMsg fail(T data){
         return build(false,ResultCodeEnum.FAIL,data);
     }
-
+    public static  CodeMsg fail(){ return build(false,ResultCodeEnum.FAIL,null);}
 
     /**
      * 不确定

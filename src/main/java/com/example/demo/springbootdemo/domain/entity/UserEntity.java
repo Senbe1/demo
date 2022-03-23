@@ -21,4 +21,12 @@ public class UserEntity extends BaseEntity {
      */
     private Integer age;
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
 }
